@@ -1,0 +1,4 @@
+/home/fredrik/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/192.5728.100/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/fredrik/Repos/raylib_platformer
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/fredrik/Repos/raylib_platformer/cmake-build-debug

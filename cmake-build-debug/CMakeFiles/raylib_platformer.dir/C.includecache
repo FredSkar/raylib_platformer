@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/fredrik/Repos/raylib_platformer/main.c
+unistd.h
+-
+stdio.h
+-
+limits.h
+-
+raylib.h
+/home/fredrik/Repos/raylib_platformer/raylib.h
+
