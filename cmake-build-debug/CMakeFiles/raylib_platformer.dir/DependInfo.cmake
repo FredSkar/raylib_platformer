@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/fredrik/Repos/raylib_platformer/main.c" "/home/fredrik/Repos/raylib_platformer/cmake-build-debug/CMakeFiles/raylib_platformer.dir/main.c.o"
+  "/home/fredrik/repos/raylib_platformer/main.c" "/home/fredrik/repos/raylib_platformer/cmake-build-debug/CMakeFiles/raylib_platformer.dir/main.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 

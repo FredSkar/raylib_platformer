@@ -1,4 +1,4 @@
-# Install script for directory: /home/fredrik/Repos/raylib_platformer
+# Install script for directory: /home/fredrik/repos/raylib_platformer
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/fredrik/Repos/raylib_platformer/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/fredrik/repos/raylib_platformer/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
