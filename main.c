@@ -35,13 +35,20 @@ int main(void)
     int current_frame = 0;
     float time;
 
+    char cwd[PATH_MAX];
+    if (getcwd(cwd, sizeof(cwd)) != NULL) {
+        printf("Current working dir: %s\n", cwd);
+    } else {
+        perror("getcwd() error");
+        return 1;
+    }
 
     InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
 
     SetTargetFPS(fps);               // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
     // Init Player
-    Texture2D player = LoadTexture("./asset/Spritesheets/players.png");
+    Texture2D player = LoadTexture("../asset/Spritesheets/players.png");
     int p_width = player.width / 8;
     int p_height = player.height / 8;
     Rectangle p_frame = {0, 0, (float )p_width, (float)p_height};
@@ -53,7 +60,7 @@ int main(void)
     int jump = false;
 
     // Load terain
-    Texture2D terain = LoadTexture("./asset/Spritesheets/spritesheet_ground.png");
+    Texture2D terain = LoadTexture("../asset/Spritesheets/spritesheet_ground.png");
     int t_width = terain.width / 8;
     int t_height = terain.height / 16;
     Rectangle t_frame = {0, (float )t_height, (float)t_width, (float)t_height};
@@ -168,6 +175,7 @@ int main(void)
     // De-Initialization
     //--------------------------------------------------------------------------------------
     UnloadTexture(player);
+    UnloadTexture(terain);
     CloseWindow();        // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
 
