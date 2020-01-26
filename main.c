@@ -66,13 +66,13 @@ int main(void)
     InitPlayer(&Player);
 
     // Load terain
-    Texture2D terain = LoadTexture("../asset/Spritesheets/spritesheet_ground.png");
+    Texture2D terain = LoadTexture("asset/Spritesheets/spritesheet_ground.png");
     int t_width = terain.width / 8;
     int t_height = terain.height / 16;
     Rectangle t_frame = {0, (float )t_height, (float)t_width, (float)t_height};
     Vector2 t_pos = {0 , 0};
 
-    MapRenderToBuf("../asset/test_map.tmx", &mapBuffer);
+    MapRenderToBuf("asset/test_map.tmx", &mapBuffer);
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
@@ -137,7 +137,7 @@ int main(void)
 
 void InitPlayer(struct Player_Attrib *player){
     // Init Player
-    player->texture = LoadTexture("../asset/Spritesheets/players.png");
+    player->texture = LoadTexture("asset/Spritesheets/players.png");
     player->width = player->texture.width / 8;
     player->height = player->texture.height / 8;
     player->frame = (Rectangle){0, 0, (float )player->width, (float)player->height};
@@ -437,7 +437,7 @@ void MapRenderToBuf(const char *mapFile, RenderTexture2D *buf){
     *buf = LoadRenderTexture((int)(mapTmx->width * mapTmx->tile_width), (int)(mapTmx->height * mapTmx->tile_height));
 
     BeginTextureMode(*buf);
-    ClearBackground(RED);
+    ClearBackground(SKYBLUE);
 
     layer = mapTmx->ly_head;
 
