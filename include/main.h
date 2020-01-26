@@ -45,16 +45,11 @@ struct Player_Attrib {
 
 };
 
-/* The frame speed of how often to update the animations. */
-int frame_speed = 10;
-
 /* Initiates the starting values for the player. */
 void InitPlayer(struct Player_Attrib *player);
 /* Updates the movement for the player, should be called once every cycle for the game engine. */
-void UpdateMovement(struct Player_Attrib *player);
+void UpdateMovement(struct Player_Attrib *player, Camera2D *cam);
 /* Loads a new tmx map into the buffer that is drawn. */
 void MapRenderToBuf(const char *mapFile, RenderTexture2D *buf);
-/* Helper function to draw the map when loaded into the buffer, should move to local map file. */
-void DrawTmxLayer(tmx_map *map, tmx_layer *layer);
 
 #endif //RAYLIB_PLATFORMER_MAIN_H

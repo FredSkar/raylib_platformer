@@ -36,7 +36,7 @@ endif()
 
 # This is the main part:
 
-add_executable(${PROJECT_NAME} main.c include/main.h)
+add_executable(${PROJECT_NAME} main.c src/movement.c include/main.h src/mapRender.c)
 #set(raylib_VERBOSE 1)
 target_link_libraries(${PROJECT_NAME} raylib)
 target_link_libraries(${PROJECT_NAME} tmx)

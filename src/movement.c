@@ -1,7 +1,12 @@
-#include "raylib.h";
-#include "../main.c";
+#include "main.h"
 
-void UpdateMovement(struct Player_Attrib *player){
+int frame_counter = 0;
+int current_frame = 0;
+
+/* The frame speed of how often to update the animations. */
+int frame_speed = 10;
+
+void UpdateMovement(struct Player_Attrib *player, Camera2D *cam){
 
     float time;
 
@@ -9,6 +14,7 @@ void UpdateMovement(struct Player_Attrib *player){
     player->move = false;
     if (IsKeyDown(KEY_A)){
         player->pos.x -= (float)(time * 100.0);
+        cam->offset.x += (float)(time * 100.0);
         player->move = true;
         player->dir = 'L';
         if (player->flipped == false){
@@ -18,72 +24,9 @@ void UpdateMovement(struct Player_Attrib *player){
     }
     else if (IsKeyDown(KEY_D)){
         player->pos.x += (float)(time * 100.0);
+        cam->offset.x -= (float)(time * 100.0);
         player->move = false;
-        if (IsKeyDown(KEY_A)){
-            player->pos.x -= (float)(time * 100.0);
-            player->move = true;
-            player->dir = 'L';
-            if (player->flipped == false){
-                player->frame.width *= -1;
-                player->flipped = true;
-            }
-        }
-        else if (IsKeyDown(KEY_D)){
-            player->pos.x += (float)(time * 100.0);
-            player->move = true;
-            player->dir = 'R';
-            if (player->flipped == true){
-                player->frame.width *= -1;
-                player->flipped = false;
-            }
-        }
-        else if (IsKeyDown(KEY_W)){
-            player->pos.y -= (float)(time * 100.0);
-            player->dir = 'U';
-        }
-        else if (IsKeyDown(KEY_S)){
-            player->pos.y += (float)(time * 100.0);
-            player->dir = 'D';
-        }
-
-        if (IsKeyPressed(KEY_SPACE)){
-            player->jumping = true;
-        }
-
-        if (player->move && (player->jumping == false && player->falling == false)){
-            frame_counter++;
-            if (frame_counter >= FPS/frame_speed){
-                frame_counter = 0;
-                current_frame++;
-
-                if (current_frame > 1){
-                    current_frame = 0;
-                }
-                if (player->dir == 'R' || player->dir == 'L'){
-                    player->frame.y = (float)(current_frame * player->height);
-                }
-
-            }
-        }else{
-            player->frame.y = (float)(7 * player->height);
-            if (player->flipped == true){
-                player->frame.width *= -1;
-                player->flipped = false;
-            }
-        }
-
-        if (player->jumping == true){
-            player->pos.y -= (float)(time * 300.0);
-
-            frame_counter++;
-            if (frame_counter >= (FPS)){
-                frame_counter = 0;
-                player->jumping = false;
-                player->falling = true;
-            }
-
-        }
-        player->pos.x = 0;
+        //player->pos.x = 0;
         //player->pos.y = (float)(SCREENHEIGHT - t_height);
         player->move = true;
         player->dir = 'R';
@@ -94,10 +37,12 @@ void UpdateMovement(struct Player_Attrib *player){
     }
     else if (IsKeyDown(KEY_W)){
         player->pos.y -= (float)(time * 100.0);
+        cam->offset.y += (float)(time * 100.0);
         player->dir = 'U';
     }
     else if (IsKeyDown(KEY_S)){
         player->pos.y += (float)(time * 100.0);
+        cam->offset.y -= (float)(time * 100.0);
         player->dir = 'D';
     }
 
@@ -139,6 +84,6 @@ void UpdateMovement(struct Player_Attrib *player){
 
     }
     if (player->falling){
-        player->pos.y += (float)(time * 200.0);
+        //player->pos.y += (float)(time * 200.0);
     }
 }
