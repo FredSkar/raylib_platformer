@@ -80,6 +80,9 @@ raylib_platformer_EXTERNAL_OBJECTS =
 raylib_platformer: CMakeFiles/raylib_platformer.dir/main.c.o
 raylib_platformer: CMakeFiles/raylib_platformer.dir/build.make
 raylib_platformer: /usr/local/lib/libraylib.so
+raylib_platformer: /usr/local/lib/libtmx.a
+raylib_platformer: /usr/lib/x86_64-linux-gnu/libz.so
+raylib_platformer: /usr/lib/x86_64-linux-gnu/libxml2.so
 raylib_platformer: CMakeFiles/raylib_platformer.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/fredrik/repos/raylib_platformer/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable raylib_platformer"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/raylib_platformer.dir/link.txt --verbose=$(VERBOSE)
