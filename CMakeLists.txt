@@ -7,6 +7,8 @@ find_package(tmx REQUIRED)
 find_package(ZLIB REQUIRED)
 find_package(LibXml2 REQUIRED)
 
+include_directories(include)
+
 # You could change the QUIET above to REQUIRED and remove this if() clause
 # This part downloads raylib and builds it if it's not installed on your system
 if (NOT raylib_FOUND) # If there's none, fetch and build raylib
@@ -34,7 +36,7 @@ endif()
 
 # This is the main part:
 
-add_executable(${PROJECT_NAME} main.c)
+add_executable(${PROJECT_NAME} main.c include/main.h)
 #set(raylib_VERBOSE 1)
 target_link_libraries(${PROJECT_NAME} raylib)
 target_link_libraries(${PROJECT_NAME} tmx)

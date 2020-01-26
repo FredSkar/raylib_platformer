@@ -18,39 +18,10 @@
 *   Copyright (c) 2013-2016 Ramon Santamaria (@raysan5)
 *
 ********************************************************************************************/
-#include <unistd.h>
-#include <stdlib.h>
-#include "raylib.h"
-#include "tmx.h"
-
-#define SCREENWIDTH 1300
-#define SCREENHEIGHT 1000
-#define FPS 60
-
-struct Player_Attrib {
-    Vector2 speed;
-    Vector2 acc;
-    Vector2 pos;
-    Texture2D texture;
-    int width;
-    int height;
-    struct Rectangle frame;
-    int move;
-    int falling;
-    int jumping;
-    int flipped;
-    char dir;
-
-};
+#include "main.h"
 
 int frame_counter = 0;
-int frame_speed = 10;
 int current_frame = 0;
-
-void InitPlayer(struct Player_Attrib *player);
-void UpdateMovement(struct Player_Attrib *player);
-void MapRenderToBuf(const char *mapFile, RenderTexture2D *buf);
-void DrawTmxLayer(tmx_map *map, tmx_layer *layer);
 
 int main(void)
 {
