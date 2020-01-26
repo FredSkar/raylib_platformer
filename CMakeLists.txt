@@ -3,6 +3,11 @@ project(raylib_platformer C)
 
 # Set this to the minimal version you want to support
 find_package(raylib 2.5 QUIET) # Let CMake search for a raylib-config.cmake
+find_package(tmx REQUIRED)
+find_package(ZLIB REQUIRED)
+find_package(LibXml2 REQUIRED)
+
+include_directories(include)
 
 # You could change the QUIET above to REQUIRED and remove this if() clause
 # This part downloads raylib and builds it if it's not installed on your system
@@ -31,8 +36,11 @@ endif()
 
 # This is the main part:
 
-add_executable(${PROJECT_NAME} main.c)
+add_executable(${PROJECT_NAME} main.c src/movement.c include/main.h src/mapRender.c)
 #set(raylib_VERBOSE 1)
 target_link_libraries(${PROJECT_NAME} raylib)
+target_link_libraries(${PROJECT_NAME} tmx)
+target_link_libraries(${PROJECT_NAME} ${ZLIB_LIBRARIES})
+target_link_libraries(${PROJECT_NAME} ${LIBXML2_LIBRARIES})
 
 # That's it! You should have an example executable that you can run. Have fun!
