@@ -1,3 +1,0 @@
-/home/fredrik/repos/raylib_platformer/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/fredrik/repos/raylib_platformer/cmake-build-debug/CMakeFiles/raylib_platformer.dir
-/home/fredrik/repos/raylib_platformer/cmake-build-debug/CMakeFiles/edit_cache.dir

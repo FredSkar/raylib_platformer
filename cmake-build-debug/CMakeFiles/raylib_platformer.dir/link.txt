@@ -1,1 +1,0 @@
-/usr/bin/cc -g   CMakeFiles/raylib_platformer.dir/main.c.o  -o raylib_platformer -Wl,-rpath,/usr/local/lib /usr/local/lib/libraylib.so /usr/local/lib/libtmx.a /usr/lib/x86_64-linux-gnu/libz.so /usr/lib/x86_64-linux-gnu/libxml2.so -L/usr/local/lib -lraylib 
