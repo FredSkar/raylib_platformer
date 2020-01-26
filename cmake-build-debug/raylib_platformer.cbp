@@ -5,7 +5,7 @@
 		<Option title="raylib_platformer"/>
 		<Option makefile_is_custom="1"/>
 		<Option compiler="gcc"/>
-		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\usr\;CMake Files\..\..\..\..\usr\local\;CMake Files\..\..\..\..\usr\local\lib\;CMake Files\..\..\..\..\usr\local\lib\cmake\;CMake Files\..\..\..\..\usr\local\lib\cmake\raylib\;"/>
+		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\usr\;CMake Files\..\..\..\..\usr\local\;CMake Files\..\..\..\..\usr\local\lib\;CMake Files\..\..\..\..\usr\local\lib\cmake\;CMake Files\..\..\..\..\usr\local\lib\cmake\raylib\;CMake Files\..\..\..\..\usr\local\lib\cmake\tmx\;"/>
 		<Build>
 			<Target title="all">
 				<Option working_dir="/home/fredrik/repos/raylib_platformer/cmake-build-debug"/>
@@ -89,6 +89,18 @@
 		</Unit>
 		<Unit filename="/home/fredrik/repos/raylib_platformer/../../../../usr/local/lib/cmake/raylib/raylib-config.cmake">
 			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\lib\cmake\raylib\"/>
+		</Unit>
+		<Unit filename="/home/fredrik/repos/raylib_platformer/../../../../usr/local/lib/cmake/tmx/tmxConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\lib\cmake\tmx\"/>
+		</Unit>
+		<Unit filename="/home/fredrik/repos/raylib_platformer/../../../../usr/local/lib/cmake/tmx/tmxConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\lib\cmake\tmx\"/>
+		</Unit>
+		<Unit filename="/home/fredrik/repos/raylib_platformer/../../../../usr/local/lib/cmake/tmx/tmxExports-noconfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\lib\cmake\tmx\"/>
+		</Unit>
+		<Unit filename="/home/fredrik/repos/raylib_platformer/../../../../usr/local/lib/cmake/tmx/tmxExports.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\lib\cmake\tmx\"/>
 		</Unit>
 	</Project>
 </CodeBlocks_project_file>

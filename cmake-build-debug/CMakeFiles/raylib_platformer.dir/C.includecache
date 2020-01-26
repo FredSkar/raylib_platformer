@@ -9,10 +9,10 @@
 /home/fredrik/repos/raylib_platformer/main.c
 unistd.h
 -
-stdio.h
--
-limits.h
+stdlib.h
 -
 raylib.h
 /home/fredrik/repos/raylib_platformer/raylib.h
+tmx.h
+/home/fredrik/repos/raylib_platformer/tmx.h
 
