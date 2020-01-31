@@ -48,7 +48,7 @@ struct Player_Attrib {
 /* Initiates the starting values for the player. */
 void InitPlayer(struct Player_Attrib *player);
 /* Updates the movement for the player, should be called once every cycle for the game engine. */
-void UpdateMovement(struct Player_Attrib *player, Camera2D *cam);
+void UpdateMovement(struct Player_Attrib *player, Camera2D *cam, struct Rectangle mapLim);
 /* Loads a new tmx map into the buffer that is drawn. */
 void MapRenderToBuf(const char *mapFile, RenderTexture2D *buf);
 

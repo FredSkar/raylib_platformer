@@ -6,8 +6,11 @@ int current_frame = 0;
 /* The frame speed of how often to update the animations. */
 int frame_speed = 10;
 
-void UpdateMovement(struct Player_Attrib *player, Camera2D *cam){
+void UpdateMovement(struct Player_Attrib *player, Camera2D *cam, struct Rectangle mapLim){
 
+    //TODO: Add check so the player can't move outside the map. issue #5
+    //TODO: Add check so the camera can't move outside the map. issue #6
+    //TODO: Add global variable as the player speed. issue #7
     float time;
 
     time = GetFrameTime();
@@ -86,4 +89,18 @@ void UpdateMovement(struct Player_Attrib *player, Camera2D *cam){
     if (player->falling){
         //player->pos.y += (float)(time * 200.0);
     }
+
+    if (player->pos.x <= 0){
+        player->pos.x = 0;
+    }
+    else if (player->pos.x >= (mapLim.width - (float)player->width)){
+        player->pos.x = mapLim.width - (float)player->width;
+    }
+    if (player->pos.y <= 0){
+        player->pos.y = 0;
+    }
+    else if (player->pos.y >= (mapLim.height - (float)player->height)){
+        player->pos.y = mapLim.height - (float)player->height;
+    }
+
 }

@@ -164,6 +164,9 @@ void MapRenderToBuf(const char *mapFile, RenderTexture2D *buf){
                     TraceLog(LOG_INFO, "Render TMX layer: %s", layer->name);
                     DrawTmxLayer(mapTmx, layer);
                     break;
+
+                    //TODO: Add other layer types, most important is the object layer to use for collision calculation.
+                    // Issue #8
                 default:
                     TraceLog(LOG_INFO, "Nothing to load.");
                     break;
