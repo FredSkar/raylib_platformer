@@ -20,6 +20,7 @@ int main(void)
     Camera2D camera;
     camera.target = (Vector2){ Player.pos.x, Player.pos.y };
     camera.offset = (Vector2){ ((float)SCREENWIDTH/2) - (float )Player.width, ((float)SCREENHEIGHT/2) - (float)Player.height };
+    //camera.offset = (Vector2){0,0};
     camera.rotation = 0.0;
     camera.zoom = 1.0;
 
@@ -61,7 +62,7 @@ void InitPlayer(struct Player_Attrib *player){
     player->width = player->texture.width / 8;
     player->height = player->texture.height / 8;
     player->frame = (Rectangle){0, 0, (float )player->width, (float)player->height};
-    player->pos = (Vector2){300, 300};
+    player->pos = (Vector2){600, 600};
     player->move = false;
     player->dir = 0;
     player->flipped = false;

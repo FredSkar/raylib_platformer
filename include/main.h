@@ -12,6 +12,7 @@
 */
 #include <unistd.h>
 #include <stdlib.h>
+#include <stdio.h>
 /* Library for drawing graphics. */
 #include "raylib.h"
 /* Library for loading and working with tmx maps. */

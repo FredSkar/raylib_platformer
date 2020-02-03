@@ -6,6 +6,9 @@ int current_frame = 0;
 /* The frame speed of how often to update the animations. */
 int frame_speed = 10;
 
+int mapLimY = false;
+int mapLimX = false;
+
 void UpdateMovement(struct Player_Attrib *player, Camera2D *cam, struct Rectangle mapLim){
 
     //TODO: Add check so the player can't move outside the map. issue #5
@@ -16,8 +19,10 @@ void UpdateMovement(struct Player_Attrib *player, Camera2D *cam, struct Rectangl
     time = GetFrameTime();
     player->move = false;
     if (IsKeyDown(KEY_A)){
-        player->pos.x -= (float)(time * 100.0);
-        cam->offset.x += (float)(time * 100.0);
+        player->pos.x -= (float)(time * 200.0);
+        if(!mapLimX){
+            cam->offset.x += (float)(time * 200.0);
+        }
         player->move = true;
         player->dir = 'L';
         if (player->flipped == false){
@@ -26,8 +31,10 @@ void UpdateMovement(struct Player_Attrib *player, Camera2D *cam, struct Rectangl
         }
     }
     else if (IsKeyDown(KEY_D)){
-        player->pos.x += (float)(time * 100.0);
-        cam->offset.x -= (float)(time * 100.0);
+        player->pos.x += (float)(time * 200.0);
+        if(!mapLimX){
+            cam->offset.x -= (float)(time * 200.0);
+        }
         player->move = false;
         //player->pos.x = 0;
         //player->pos.y = (float)(SCREENHEIGHT - t_height);
@@ -39,13 +46,17 @@ void UpdateMovement(struct Player_Attrib *player, Camera2D *cam, struct Rectangl
         }
     }
     else if (IsKeyDown(KEY_W)){
-        player->pos.y -= (float)(time * 100.0);
-        cam->offset.y += (float)(time * 100.0);
+        player->pos.y -= (float)(time * 200.0);
+        if(!mapLimY){
+            cam->offset.y += (float)(time * 200.0);
+        }
         player->dir = 'U';
     }
     else if (IsKeyDown(KEY_S)){
-        player->pos.y += (float)(time * 100.0);
-        cam->offset.y -= (float)(time * 100.0);
+        player->pos.y += (float)(time * 200.0);
+        if(!mapLimY){
+            cam->offset.y -= (float)(time * 200.0);
+        }
         player->dir = 'D';
     }
 
@@ -101,6 +112,23 @@ void UpdateMovement(struct Player_Attrib *player, Camera2D *cam, struct Rectangl
     }
     else if (player->pos.y >= (mapLim.height - (float)player->height)){
         player->pos.y = mapLim.height - (float)player->height;
+    }
+
+    float upperLim = ((float)SCREENHEIGHT / 2) - (float)player->height;
+    float lowerLim = mapLim.height - ((float)SCREENHEIGHT / 2) - (float)player->height;
+    float leftLim = ((float)SCREENWIDTH / 2) - (float)player->width;
+    float rightLim = mapLim.width - ((float)SCREENHEIGHT / 2) - ((float)player->width * 2);
+
+    if (player->pos.y <= upperLim || player->pos.y >= lowerLim){
+        mapLimY = true;
+    } else{
+        mapLimY = false;
+    }
+
+    if (player->pos.x <= leftLim || player->pos.x >= rightLim){
+        mapLimX = true;
+    }else{
+        mapLimX = false;
     }
 
 }
