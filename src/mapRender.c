@@ -6,6 +6,10 @@
 
 /* Helper function to draw the map when loaded into the buffer, should move to local map file. */
 void DrawTmxLayer(tmx_map *map, tmx_layer *layer);
+node DrawObjects(tmx_object_group *objgr);
+
+node createNode();
+node addNode(node head, Rectangle nodeValue);
 
 Texture2D *LoadMapTexture(const char *fileName)
 {
@@ -135,9 +139,10 @@ void DrawTmxLayer(tmx_map *map, tmx_layer *layer)
     }
 }
 
-void MapRenderToBuf(const char *mapFile, RenderTexture2D *buf){
+node MapRenderToBuf(const char *mapFile, RenderTexture2D *buf){
 
     tmx_layer *layer = NULL;
+    node temp = NULL;
 
     // Setting these two function pointers allows TMX lib to load the tileset graphics and
     // set each tile's resource_image property properly.
@@ -146,9 +151,10 @@ void MapRenderToBuf(const char *mapFile, RenderTexture2D *buf){
 
     tmx_map *mapTmx = tmx_load(mapFile);
     if (mapTmx == NULL){
-        return;
+        return temp;
     }
 
+    /* Add all texture to the buffer */
     *buf = LoadRenderTexture((int)(mapTmx->width * mapTmx->tile_width), (int)(mapTmx->height * mapTmx->tile_height));
 
     BeginTextureMode(*buf);
@@ -156,6 +162,7 @@ void MapRenderToBuf(const char *mapFile, RenderTexture2D *buf){
 
     layer = mapTmx->ly_head;
 
+    /* Read the data from the different layers of the map */
     while(layer)
     {
         if(layer->visible){
@@ -165,6 +172,9 @@ void MapRenderToBuf(const char *mapFile, RenderTexture2D *buf){
                     DrawTmxLayer(mapTmx, layer);
                     break;
 
+                case L_OBJGR:
+                    temp = DrawObjects(layer->content.objgr);
+                    break;
                     //TODO: Add other layer types, most important is the object layer to use for collision calculation.
                     // Issue #8
                 default:
@@ -177,4 +187,89 @@ void MapRenderToBuf(const char *mapFile, RenderTexture2D *buf){
     }
     EndTextureMode();
     tmx_map_free(mapTmx);
+    return(temp);
+}
+
+node DrawObjects(tmx_object_group *objgr) {
+    node llhead = NULL;
+    node *current = NULL;
+    tmx_object *head = objgr->head;
+    //Color color = int_to_color(objgr->color);
+    struct Color white;
+    white.a = 0xff;
+    white.b = 0xff;
+    white.g = 0xff;
+    white.r = 0xff;
+
+    struct Color red;
+    red.a = 0xff;
+    red.b = 0x00;
+    red.g = 0x00;
+    red.r = 0xff;
+
+    struct Color blue;
+    blue.a = 0xff;
+    blue.b = 0xff;
+    blue.g = 0x00;
+    blue.r = 0x00;
+
+    struct Color green;
+    green.a = 0xff;
+    green.b = 0x00;
+    green.g = 0xff;
+    green.r = 0x00;
+
+    struct Color black;
+    black.a = 0xff;
+    black.b = 0x00;
+    black.g = 0x00;
+    black.r = 0x00;
+
+    int index = 0;
+    struct Color array[5] = {white, red, green, blue, black};
+
+    while (head) {
+        if (head->visible) {
+            if (head->obj_type == OT_SQUARE) {
+                DrawRectangleLinesEx((Rectangle){head->x, head->y, head->width, head->height}, 5, array[index]);
+                llhead = addNode(llhead, (Rectangle) {head->x, head->y, head->width, head->height});
+                index++;
+            }
+//            else if (head->obj_type  == OT_POLYGON) {
+//                draw_polygon(head->x, head->y, head->content.shape->points, head->content.shape->points_len, color);
+//            }
+//            else if (head->obj_type == OT_POLYLINE) {
+//                draw_polyline(head->x, head->y, head->content.shape->points, head->content.shape->points_len, color);
+//            }
+//            else if (head->obj_type == OT_ELLIPSE) {
+//                DrawEllipseLines(head->x + head->width/2.0, head->y + head->height/2.0, head->width/2.0, head->height/2.0, color);
+//            }
+        }
+        head = head->next;
+    }
+    return(llhead);
+}
+
+node addNode(node head, Rectangle nodeValue){
+    node temp,p;// declare two nodes temp and p
+    temp = createNode();//createNode will return a new node with data = value and next pointing to NULL.
+    temp->data = nodeValue; // add element's value to data part of node
+    if(head == NULL){
+        head = temp;     //when linked list is empty
+    }
+    else{
+        p  = head;//assign head to p
+        while(p->next != NULL){
+            p = p->next;//traverse the list until p is the last node.The last node always points to NULL.
+        }
+        p->next = temp;//Point the previous last node to the new node created.
+    }
+    return head;
+}
+
+node createNode(){
+    node temp; // declare a node
+    temp = (node)malloc(sizeof(struct Hit_List)); // allocate memory using malloc()
+    temp->next = NULL;// make next point to NULL
+    return temp;//return the new node
 }

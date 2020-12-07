@@ -29,6 +29,10 @@
 /* Set the target FPS to run the game at. */
 #define FPS 60
 
+#define PLAYERMOVESPEED 10
+#define PLAYERJUMPSPEED 50
+#define PLAYERFALLSPEED 30
+
 /* The attributes for the player character. */
 struct Player_Attrib {
     Vector2 speed;
@@ -46,11 +50,19 @@ struct Player_Attrib {
 
 };
 
+struct Hit_List {
+    Rectangle data;
+    struct Hit_List *next;
+};
+typedef struct Hit_List *node;
+
 /* Initiates the starting values for the player. */
 void InitPlayer(struct Player_Attrib *player);
 /* Updates the movement for the player, should be called once every cycle for the game engine. */
-void UpdateMovement(struct Player_Attrib *player, Camera2D *cam, struct Rectangle mapLim);
+void UpdateMovement(struct Player_Attrib *player, Camera2D *cam, struct Rectangle mapLim, node head);
 /* Loads a new tmx map into the buffer that is drawn. */
-void MapRenderToBuf(const char *mapFile, RenderTexture2D *buf);
+node MapRenderToBuf(const char *mapFile, RenderTexture2D *buf);
+
+void CheckCollision(struct Player_Attrib *player, node collisionList);
 
 #endif //RAYLIB_PLATFORMER_MAIN_H

@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.11) # FetchContent is available in 3.11+
 project(raylib_platformer C)
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+set(CMAKE_BUILD_TYPE Debug)
 # Set this to the minimal version you want to support
 find_package(raylib 2.5 QUIET) # Let CMake search for a raylib-config.cmake
 find_package(tmx REQUIRED)

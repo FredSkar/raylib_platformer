@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="21" height="15" tilewidth="128" tileheight="128" infinite="0" nextlayerid="5" nextobjectid="6">
+<map version="1.4" tiledversion="1.4.1" orientation="orthogonal" renderorder="right-down" width="21" height="15" tilewidth="128" tileheight="128" infinite="0" nextlayerid="5" nextobjectid="7">
  <tileset firstgid="1" name="spritesheet_ground" tilewidth="128" tileheight="128" tilecount="128" columns="8">
   <image source="Spritesheets/spritesheet_ground.png" width="1024" height="2048"/>
  </tileset>
@@ -23,8 +23,9 @@
 </data>
  </layer>
  <objectgroup id="3" name="Object Layer 1">
-  <object id="1" x="10" y="910" width="1258" height="104"/>
+  <object id="1" x="193.515" y="1113.54" width="1258" height="104"/>
   <object id="2" x="786" y="532" width="208" height="78"/>
   <object id="3" x="396" y="274" width="228" height="44"/>
+  <object id="6" x="13.3366" y="903.327" width="1258" height="104"/>
  </objectgroup>
 </map>
