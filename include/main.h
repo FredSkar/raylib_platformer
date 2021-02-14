@@ -30,7 +30,7 @@
 #define FPS 60
 
 #define PLAYERMOVESPEED 10
-#define PLAYERJUMPSPEED 50
+#define PLAYERJUMPSPEED 500
 #define PLAYERFALLSPEED 30
 
 /* The attributes for the player character. */

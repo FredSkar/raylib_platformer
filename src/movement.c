@@ -7,16 +7,17 @@ int current_frame = 0;
 /* The frame speed of how often to update the animations. */
 int frame_speed = 10;
 
+int jump_time = 0;
+float plyPosMovX = 0;
+float plyPosMovY = 0;
+
 Vector2 playerAcc = {0, 0};
 
 void UpdateMovement(struct Player_Attrib *player, Camera2D *cam, struct Rectangle mapLim, node head){
 
-    //TODO: Add check so the player can't move outside the map. issue #5
-    //TODO: Add check so the camera can't move outside the map. issue #6
     //TODO: Add global variable as the player speed. issue #7
     float time;
-    float plyPosMovX = 0;
-    float plyPosMovY = 0;
+
     bool collision = false;
     bool collisionSide = false;
     bool collisionUpDown = false;
@@ -49,17 +50,17 @@ void UpdateMovement(struct Player_Attrib *player, Camera2D *cam, struct Rectangl
         playerAcc.y -= (float)(time * 100.0);
         player->dir = 'U';
     }
-    else if (IsKeyDown(KEY_S) && (player->falling == false) && (player->jumping == false)){
+    else if (IsKeyDown(KEY_S)  && (player->falling == false) && (player->jumping == false)){
         playerAcc.y += (float)(time * 100.0);
         player->dir = 'D';
     }
 
-    if (IsKeyPressed(KEY_SPACE)){
-        //player->jumping = true;
-        playerAcc.y = -PLAYERJUMPSPEED;
-        player->dir = 'U';
-        //player->falling = false;
-    }
+//    if (IsKeyPressed(KEY_SPACE)){
+//        player->jumping = true;
+//        playerAcc.y = (float)(time * -PLAYERJUMPSPEED);
+//        player->dir = 'U';
+//        player->falling = true;
+//    }
 
     /**************************************************************************/
     /* Calculate the animation speed of the player. */
@@ -107,9 +108,9 @@ void UpdateMovement(struct Player_Attrib *player, Camera2D *cam, struct Rectangl
 
     if(player->falling){
         playerAcc.y += (float)(time * 200.0);
-        //player->dir = 'D';
+        player->dir = 'D';
     }
-    else{
+    else if(player->jumping == false){
         playerAcc.y = 0;
         //player->dir = 'n';
     }
@@ -155,10 +156,11 @@ void UpdateMovement(struct Player_Attrib *player, Camera2D *cam, struct Rectangl
         if(collisionUpDown){
             player->falling = false;
             player->jumping = false;
+            player->move = false;
             break;
         }
         if(collisionSide){
-            player->move = false;
+             player->move = false;
             break;
         }
         else{
@@ -167,6 +169,15 @@ void UpdateMovement(struct Player_Attrib *player, Camera2D *cam, struct Rectangl
     }
 
     if (collisionCount == 0 ){//&& player->jumping == false){
+        if (player->jumping == true && jump_time <= 0.5){
+            jump_time += time;
+        }
+        else {
+            player->jumping = false;
+            player->falling = true;
+            //player->dir = 'D';
+            //plyPosMovY += (float)(time * 200.0);
+        }
         //printf("falling\n");
         //player->falling = true;
         //player->dir = 'D';
@@ -181,7 +192,9 @@ void UpdateMovement(struct Player_Attrib *player, Camera2D *cam, struct Rectangl
     }
     if(!collisionUpDown) {
         player->pos.y += plyPosMovY;
-        player->falling = true;
+        if(player->jumping == false){
+            player->falling = true;
+        }
     }
 
     if (player->pos.x <= 0) {
